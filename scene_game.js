@@ -76,7 +76,7 @@ var mouvement = false
 var test_was_right = false; test_was_left = false; test_was_up = false; test_was_down = false; test_demi_tour = false; test_regle = false; test_regle_2 = false; test_regle_2 = false; test_regle_4 = false
 
 var restart_game = false; test_menu = false; test_rules = false ; test_demo = false
-
+var test_fleche_clavier_gauche = false; test_fleche_clavier_droite = false; test_fleche_clavier_haut = false; test_fleche_clavier_bas = false;
 
 
 // definition d'une classe pour créer la scene 1
@@ -193,6 +193,11 @@ this.load.image('case_obj', 'assets/case_obj.png', {frameWidth: 60, frameHeight:
 
 //flèche clavier /////
 this.load.image('fleche_clavier', 'assets/fleche_clavier.png')
+this.load.image('fleche_clavier_gauche', 'assets/fleche_clavier_gauche.png')
+this.load.image('fleche_clavier_droite', 'assets/fleche_clavier_droite.png')
+this.load.image('fleche_clavier_haut', 'assets/fleche_clavier_haut.png')
+this.load.image('fleche_clavier_bas', 'assets/fleche_clavier_bas.png')
+
 // resart button
 this.load.image('restart', 'assets/restart.png')
 this.load.image('restart_logo', 'assets/restart_logo.png')
@@ -274,6 +279,8 @@ victoire_joueur_1 = false; victoire_joueur_2 = false
 mouvement = false
 test_was_right = false; test_was_left = false; test_was_up = false; test_was_down = false; test_demi_tour = false; test_regle = false; test_regle_2 = false; test_regle_2 = false; test_regle_4 = false
 restart_game  = false; test_menu = false; test_rules = false ; test_demo = false
+test_fleche_clavier_gauche = false; test_fleche_clavier_droite = false;test_fleche_clavier_haut = false;test_fleche_clavier_bas = false;
+
 
 }
     
@@ -307,6 +314,25 @@ create() {
     // image fleche clavier ////////////////////
     this.fleche_clavier = this.add.image(850, 350, 'fleche_clavier') 
     this.fleche_clavier.alpha = 0
+
+    this.fleche_clavier_gauche = this.add.image(802, 370, 'fleche_clavier_gauche').setInteractive();
+    this.fleche_clavier_gauche.on('pointerdown', function () {test_fleche_clavier_gauche = true});
+    this.fleche_clavier_gauche.alpha = 0
+
+    this.fleche_clavier_droite = this.add.image(900, 368, 'fleche_clavier_droite').setInteractive();
+    this.fleche_clavier_droite.on('pointerdown', function () {test_fleche_clavier_droite = true});
+    this.fleche_clavier_droite.alpha = 0
+
+    this.fleche_clavier_haut = this.add.image(852, 328, 'fleche_clavier_haut').setInteractive();
+    this.fleche_clavier_haut.on('pointerdown', function () {test_fleche_clavier_haut = true});
+    this.fleche_clavier_haut.alpha = 0
+
+    this.fleche_clavier_bas = this.add.image(852, 370, 'fleche_clavier_bas').setInteractive();
+    this.fleche_clavier_bas.on('pointerdown', function () {test_fleche_clavier_bas = true});
+    this.fleche_clavier_bas.alpha = 0
+
+
+
 
     this.GravityG = this.add.image(850, 350, 'GravityG')
     this.GravityG.alpha = 0;
@@ -2869,7 +2895,7 @@ if(test_demo == true){
 
 // flèche /////////////////////////////////////////////////////////
 if(no_tour == 0){
-if(GDroite.isDown) {
+if(GDroite.isDown || test_fleche_clavier_droite == true) {
     //fonction mouvement gravité générale
     //definition de variables pour utilisation dans les autres foncitons de mouvement
     gravity1_x = 130
@@ -2893,8 +2919,9 @@ if(GDroite.isDown) {
     test_left = false
     test_up = false  
     test_down = false 
+    test_fleche_clavier_droite == false
     }
-else if(GGauche.isDown) {   
+else if(GGauche.isDown || test_fleche_clavier_gauche == true) {   
     gravity1_x = -130
     gravity1_y = 0
     gravity2_x = -130
@@ -2913,8 +2940,9 @@ else if(GGauche.isDown) {
     test_left = true
     test_up = false  
     test_down = false 
+    test_fleche_clavier_gauche == false
     }
-else if(GBas.isDown) {   
+else if(GBas.isDown|| test_fleche_clavier_bas == true) {   
     gravity1_x = 0
     gravity1_y = 130
     gravity2_x = 0
@@ -2931,8 +2959,9 @@ else if(GBas.isDown) {
     test_left = false
     test_up = false  
     test_down = true 
+    test_fleche_clavier_bas == false
     }
-else if(GHaut.isDown) { 
+else if(GHaut.isDown|| test_fleche_clavier_haut == true) { 
     gravity1_x = 0
     gravity1_y = -130
     gravity2_x = 0
@@ -2949,12 +2978,17 @@ else if(GHaut.isDown) {
     test_left = false
     test_up = true 
     test_down = false 
+    test_fleche_clavier_haut == false
     }
 
 // afficher le texte ///////////////////////////////
 this.text_sens_gravite1.setVisible(true)
 this.text_sens_gravite2.setVisible(true)
 this.fleche_clavier.alpha = 1
+this.fleche_clavier_gauche.alpha = 1
+this.fleche_clavier_droite.alpha = 1
+this.fleche_clavier_haut.alpha = 1
+this.fleche_clavier_bas.alpha = 1
 } 
 
 
@@ -2972,6 +3006,10 @@ if(no_tour == 1){
 this.text_sens_gravite1.destroy()
 this.text_sens_gravite2.destroy()
 this.fleche_clavier.alpha = 0
+this.fleche_clavier_gauche.alpha = 0
+this.fleche_clavier_droite.alpha = 0
+this.fleche_clavier_haut.alpha = 0
+this.fleche_clavier_bas.alpha = 0
 this.text_pos_obj1.setVisible(true)
 this.text_pos_obj2.setVisible(true)
 }
