@@ -3,8 +3,10 @@
 // configuration jeu phaser //////////////////////////////////////
 const config = {
     //constructor (){super('game')}
-    width: 1035,
-    height: 870,
+    width: 0.68*window.innerWidth * window.devicePixelRatio,
+    height: 0.97*window.innerHeight * window.devicePixelRatio,
+  
+
     "resolution": window.devicePixelRatio,
     type: Phaser.AUTO,
 
