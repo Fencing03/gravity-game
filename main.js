@@ -3,15 +3,13 @@
 // configuration jeu phaser //////////////////////////////////////
 const config = {
     //constructor (){super('game')}
+    type: Phaser.AUTO,
     scale: {
-        mode: Phaser.DOM.FIT,
-        width: 1035,
-        height: 700,
-
-        min: {width: 517,height: 350,}
-    },
-
-
+        mode: Phaser.DOM.FIT ,
+        parent: "phaser-game",
+        width: window.innerWidth,
+        height: window.innerHeight,
+      },
     //"resolution": window.devicePixelRatio,
     //type: Phaser.AUTO,
 

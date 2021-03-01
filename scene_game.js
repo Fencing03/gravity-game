@@ -4330,7 +4330,14 @@ if(victoire_joueur_2 == true){
 
    
     
- 
+    (function() {
+        const gameId = document.getElementById("game"); // Target div that wraps the phaser game
+        gameId.style.width = '100%'; // set width to 100%
+        gameId.style.height = '100%'; // set height to 100%
+    })(); // run function
+
+
+
 
 
 
